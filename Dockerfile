@@ -34,14 +34,13 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositor
         php7-soap \
         php7-zlib \
         php7-ftp \
-        php7-bz2
-RUN curl -L -o /tmp/redis.tar.gz https://github.com/phpredis/phpredis/archive/$PHPREDIS_VERSION.tar.gz \
-    && tar xfz /tmp/redis.tar.gz \
-    && rm -r /tmp/redis.tar.gz \
-    && mv phpredis-$PHPREDIS_VERSION /usr/src/php/ext/redis \
-    && docker-php-ext-install redis \
-    && rm -rf /var/cache/apk/*
-    
+        php7-bz2 \
+        php7-uuid \
+        php7-redis \
+        php7-ssh2 \
+        php7-xdebug \
+        && rm -rf /var/cache/apk/*
+
 # fix php-fpm "Error relocating /usr/bin/php-fpm: __flt_rounds: symbol not found" bug
 RUN apk add -u musl
 RUN rm -rf /var/cache/apk/*
