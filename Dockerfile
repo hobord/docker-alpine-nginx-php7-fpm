@@ -5,7 +5,7 @@ ENV PHPREDIS_VERSION php7
 
 RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
 	apk update \
-    && apk add shadow bash nginx ca-certificates \
+    && apk add bash nginx ca-certificates \
     && apk --update add \
         php7 \
         php7-dom \
@@ -50,8 +50,10 @@ ADD files/php-fpm.conf /etc/php7/
 ADD files/run.sh /
 RUN chmod +x /run.sh
 
-RUN usermod -u 1000 nginx
-RUN apk del shadow
+RUN userdel nginx
+RUN adduser --no-create-home --uid 1000 --gid 101 --disabled-password --disabled-login nginx
+#RUN usermod -u 1000 nginx
+#RUN apk del shadow
 
 EXPOSE 80
 VOLUME ["/DATA","/DATA/htdocs"]
