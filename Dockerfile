@@ -45,10 +45,8 @@ ADD files/php-fpm.conf /etc/php7/
 ADD files/run.sh /
 RUN chmod +x /run.sh
 
-RUN userdel nginx
-RUN adduser --no-create-home --uid 1000 --gid 101 --disabled-password --disabled-login nginx
-#RUN usermod -u 1000 nginx
-#RUN apk del shadow
+RUN usermod -u 1000 nginx
+RUN apk del shadow
 
 EXPOSE 80
 VOLUME ["/DATA","/DATA/htdocs"]
