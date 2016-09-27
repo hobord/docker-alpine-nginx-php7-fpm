@@ -3,7 +3,7 @@ MAINTAINER Balazs Szabo <balazs.szabo@gmail.com>
 
 ENV PHPREDIS_VERSION php7
 
-RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
+RUN echo "http://dl-4.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
 	apk update \
     && apk add bash nginx ca-certificates \
     && apk --update add \
@@ -23,7 +23,6 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositor
         php7-pdo_mysql \
         php7-pdo_sqlite \
         php7-exif \
-        php7-mongodb \
         php7-posix \
         php7-session \
         php7-xml \
@@ -35,10 +34,6 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositor
         php7-zlib \
         php7-ftp \
         php7-bz2 \
-        php7-uuid \
-        php7-redis \
-        php7-ssh2 \
-        php7-xdebug \
         && rm -rf /var/cache/apk/*
 
 # fix php-fpm "Error relocating /usr/bin/php-fpm: __flt_rounds: symbol not found" bug
