@@ -6,7 +6,7 @@ ENV PHPREDIS_VERSION php7
 RUN echo "http://dl-4.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
 	apk update \
     && apk add bash nginx ca-certificates \
-    && apk --update add \
+    && apk --update add shadow \
         php7 \
         php7-dom \
         php7-ctype \
